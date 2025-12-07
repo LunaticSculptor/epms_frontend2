@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard Report</h2>
+        <form>
+            <label for="timeFrame">Select Time Frame</label>
+            <select id="timeFrame">
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+
+            <button type="submit">Generate Report</button>
+        </form>
+
+        <h3>Top Performers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Average Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>9.5</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>9.3</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Department-Wise Breakdown</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Total Employees</th>
+                    <th>Average Performance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Engineering</td>
+                    <td>400</td>
+                    <td>8.5</td>
+                </tr>
+                <tr>
+                    <td>Marketing</td>
+                    <td>300</td>
+                    <td>7.9</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Training Statistics</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Total Sessions</th>
+                    <th>Completed</th>
+                    <th>Pending</th>
+                    <th>Overdue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>50</td>
+                    <td>40</td>
+                    <td>10</td>
+                    <td>5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

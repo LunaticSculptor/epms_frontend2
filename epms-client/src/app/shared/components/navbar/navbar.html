@@ -1,0 +1,33 @@
+<nav class="navbar glass-panel">
+  <div class="container navbar-content">
+    <div class="brand">
+      <a routerLink="/" class="logo">EPMS</a>
+    </div>
+
+    <div class="links" *ngIf="authService.isAuthenticated()">
+      <a *ngFor="let link of navLinks()" 
+         [routerLink]="link.path" 
+         routerLinkActive="active"
+         class="nav-link">
+        {{ link.label }}
+      </a>
+    </div>
+
+    <div class="actions">
+      <div class="user-info" *ngIf="authService.isAuthenticated()">
+        <span class="user-name">{{ user()?.name }}</span>
+        <span class="timer" [class.warning]="countdownService.timeLeft() < 60">
+            {{ formattedTime() }}
+        </span>
+      </div>
+
+      <button class="theme-btn" (click)="toggleTheme()" title="Toggle Theme">
+        {{ themeService.theme() === 'dark' ? '☀️' : '🌙' }}
+      </button>
+
+      <button *ngIf="authService.isAuthenticated()" (click)="logout()" class="logout-btn">
+        Logout
+      </button>
+    </div>
+  </div>
+</nav>

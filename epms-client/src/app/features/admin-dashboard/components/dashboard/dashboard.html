@@ -1,0 +1,97 @@
+<div class="page-container glass-panel">
+    <div class="page-header">
+        <h1>Admin Dashboard</h1>
+        <p>Overview of system performance and statistics.</p>
+    </div>
+
+    <div class="controls-section" [formGroup]="filterForm">
+        <div class="control-group">
+            <label>Time Frame</label>
+            <select formControlName="timeFrame">
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+        </div>
+
+        <div class="toggles">
+            <label class="checkbox-wrapper">
+                <input type="checkbox" formControlName="showTopPerformers">
+                <span>Top Performers</span>
+            </label>
+
+            <label class="checkbox-wrapper">
+                <input type="checkbox" formControlName="showDeptBreakdown">
+                <span>Dept Breakdown</span>
+            </label>
+
+            <label class="checkbox-wrapper">
+                <input type="checkbox" formControlName="showTrainingStats">
+                <span>Training Stats</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="dashboard-content" *ngIf="data && !loading">
+        <!-- Key Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card glass-panel">
+                <h3>Total Employees</h3>
+                <p class="value">{{ data.stats.totalEmployees }}</p>
+            </div>
+            <div class="stat-card glass-panel">
+                <h3>Pending Reviews</h3>
+                <p class="value">{{ data.stats.pendingReviews }}</p>
+            </div>
+            <div class="stat-card glass-panel">
+                <h3>Bonuses Distributed</h3>
+                <p class="value">${{ data.stats.bonusesDistributed | number }}</p>
+            </div>
+        </div>
+
+        <!-- Dynamic Sections -->
+        <div class="sections-grid">
+            <div class="section-card glass-panel" *ngIf="data.topPerformers">
+                <h2>Top Performers</h2>
+                <div class="performer-list">
+                    <div class="performer-item" *ngFor="let p of data.topPerformers; let i = index">
+                        <span class="rank">#{{ i + 1 }}</span>
+                        <span class="name">{{ p.name }}</span>
+                        <span class="score">{{ p.score }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card glass-panel" *ngIf="data.departmentStats">
+                <h2>Department Performance</h2>
+                <div class="dept-list">
+                    <div class="dept-item" *ngFor="let d of data.departmentStats">
+                        <span class="name">{{ d.name }}</span>
+                        <div class="bar-container">
+                            <div class="bar" [style.width.%]="d.avgScore * 10"></div>
+                        </div>
+                        <span class="score">{{ d.avgScore }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card glass-panel" *ngIf="data.trainingStats">
+                <h2>Training Status</h2>
+                <div class="training-chart">
+                    <div class="stat-row">
+                        <span>Completed</span>
+                        <strong>{{ data.trainingStats.completed }}%</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Overdue</span>
+                        <strong class="danger">{{ data.trainingStats.overdue }}%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-state" *ngIf="loading">
+        Loading dashboard data...
+    </div>
+</div>

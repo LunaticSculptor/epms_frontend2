@@ -1,0 +1,46 @@
+<div class="page-container glass-panel">
+    <div class="page-header">
+        <h1>Overdue Training Report</h1>
+        <p>View and manage overdue training sessions. Drag to reorder.</p>
+    </div>
+
+    <div class="filters-section" [formGroup]="filterForm">
+        <div class="filter-group">
+            <label>Start Date</label>
+            <input type="date" formControlName="startDate">
+        </div>
+
+        <div class="filter-group">
+            <label>End Date</label>
+            <input type="date" formControlName="endDate">
+        </div>
+
+        <div class="filter-group">
+            <label>Training Type</label>
+            <select formControlName="type">
+                <option value="">All Types</option>
+                <option *ngFor="let type of trainingTypes" [value]="type">{{ type }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="training-list" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div class="training-item glass-panel" *ngFor="let session of sessions" cdkDrag>
+            <div class="drag-handle" cdkDragHandle>
+                ☰
+            </div>
+            <div class="session-info">
+                <h3>{{ session.employeeName }}</h3>
+                <p>Type: {{ session.trainingType }}</p>
+            </div>
+            <div class="session-meta">
+                <span class="due-date">Due: {{ session.dueDate }}</span>
+                <span class="status badge-overdue">{{ session.status }}</span>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="sessions.length === 0">
+            No overdue training sessions found.
+        </div>
+    </div>
+</div>

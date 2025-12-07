@@ -1,0 +1,128 @@
+.page-container {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+
+    h1 {
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+    }
+
+    p {
+        opacity: 0.7;
+    }
+}
+
+.filters-section {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    /* Slight tint */
+    border-radius: 12px;
+
+    .filter-group {
+        flex: 1;
+        min-width: 200px;
+
+        input,
+        select {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.training-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.training-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: default;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.drag-handle {
+    cursor: grab;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    opacity: 0.5;
+    margin-right: 1rem;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.session-info {
+    flex: 1;
+
+    h3 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+}
+
+.session-meta {
+    text-align: right;
+
+    .due-date {
+        display: block;
+        font-size: 0.85rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .status {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 99px;
+        font-weight: 600;
+
+        &.badge-overdue {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+    }
+}
+
+/* CDK Drag Drop Styles */
+.cdk-drag-preview {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.training-list.cdk-drop-list-dragging .training-item:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

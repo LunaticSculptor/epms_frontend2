@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .user-info {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Performance</a>
+            <a href="#">Reports</a>
+        </div>
+        <div class="user-info">
+            Logged in as <span id="user-name">John Doe</span> | Auto-logout in <span id="timer">10:00</span>
+        </div>
+    </div>
+</body>
+</html>

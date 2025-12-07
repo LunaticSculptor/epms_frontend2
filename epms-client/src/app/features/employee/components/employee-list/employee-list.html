@@ -1,0 +1,69 @@
+<div class="page-container glass-panel">
+    <div class="page-header">
+        <h1>Employee Performance</h1>
+        <p>View and analyze employee performance metrics.</p>
+    </div>
+
+    <div class="filters-section" [formGroup]="filterForm">
+        <div class="filter-group">
+            <label>Department</label>
+            <select formControlName="department">
+                <option value="">All Departments</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Min Score</label>
+            <input type="number" formControlName="minScore" placeholder="Min Score">
+        </div>
+
+        <div class="filter-group">
+            <label>Min Avg</label>
+            <input type="number" formControlName="minAvgScore" placeholder="Min Avg">
+        </div>
+    </div>
+
+    <div class="employee-grid">
+        <div class="employee-card glass-panel" *ngFor="let emp of employees()">
+            <div class="card-header">
+                <div class="avatar-placeholder">{{ emp.name.charAt(0) }}</div>
+                <div class="emp-info">
+                    <h3>{{ emp.name }}</h3>
+                    <span class="role">{{ emp | nestedValue:'department.name' }}</span>
+                </div>
+                <div class="score-badge" [class.high]="emp.score >= 8" [class.med]="emp.score >= 5 && emp.score < 8">
+                    {{ emp.score }}
+                </div>
+            </div>
+
+            <div class="card-details">
+                <div class="detail-row">
+                    <span>Email:</span>
+                    <span>{{ emp.email }}</span>
+                </div>
+                <div class="detail-row">
+                    <span>Manager:</span>
+                    <span>{{ emp | nestedValue:'department.manager.name' }}</span>
+                </div>
+                <div class="detail-row">
+                    <span>Avg Score:</span>
+                    <span>{{ emp.averageScore }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-state" *ngIf="loading()">
+        <div class="spinner"></div>
+        <p>Loading employees...</p>
+    </div>
+
+    <div class="end-state" *ngIf="!loading() && employees().length === total() && total() > 0">
+        <p>No more employees to load.</p>
+    </div>
+
+    <div class="empty-state" *ngIf="!loading() && total() === 0">
+        <p>No employees found matching your criteria.</p>
+    </div>
+</div>
